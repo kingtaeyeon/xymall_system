@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from "./redux";
+import store, { history } from "./redux";
 import './index.less';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <App history={ history } />
     </Provider>,
     document.getElementById('root')
 

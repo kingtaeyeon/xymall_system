@@ -35,11 +35,13 @@ const LoginMain: React.FC<IProps> = (props) => {
         } else {
             /**
              * 执行登陆的逻辑
+             * 假设有这样一个需求，我们希望在组件中去处理请求过后返回的数据，
+             * async await 用一个变量的值去接收一个值的话，
+             * 如果await后面是一个promise，那么变量收到的值是成功的值
+             * 如果该promise失败，则程序会终止运行。
+             *
              **/
-            fetch(values).then(
-                res => { console.log('then里面的打印：', res)},
-                error => { console.log('error里的打印：', error)}
-            );
+            // const result = await fetch(values);
         }
     };
 
