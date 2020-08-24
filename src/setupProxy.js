@@ -9,7 +9,8 @@ const proxy = require('http-proxy-middleware');
 module.exports = function (app) {
 
     app.use('/xymall/api', proxy.createProxyMiddleware({
-        target: 'http://localhost:1060',
+       // target: 'http://localhost:1060',
+        target: 'https://www.codedmx.top',
         changeOrigin: true
 
     }));

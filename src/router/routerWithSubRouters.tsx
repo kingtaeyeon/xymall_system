@@ -24,7 +24,7 @@ export default function (props:RouteConfigComponentProps) {
                                         path={`${match.path}${r.path || ''}`}
                                         exact={r.exact}
                                         strict={r.strict}
-                                        renden={(props: RouteConfigComponentProps) => {
+                                        render={(props: RouteConfigComponentProps) => {
                                             if(r.render) {
                                                 return r.render({...props, route: r})
                                             }

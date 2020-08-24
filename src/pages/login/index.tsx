@@ -19,9 +19,7 @@ interface IProps {
 
 const Login: React.FC<IProps> = (props ) => {
 
-  // const { isLogin, loading } = useSelector((state: IState) => state.user);
-    const isLogin = false;
-    const loading = true;
+    const { isLogin, loading } = useSelector((state: IState) => state.user);
     const action = userActions({
         loginActionPromise
     });
@@ -37,10 +35,10 @@ const Login: React.FC<IProps> = (props ) => {
                     loading={ loading }
                 />
                 <div className="login-footer" />
-                {/*<ParticlesBg*/}
-                {/*    type="lines"*/}
-                {/*    bg*/}
-                {/*/>*/}
+                <ParticlesBg
+                    type="lines"
+                    bg
+                />
             </div>
         </div>
     );

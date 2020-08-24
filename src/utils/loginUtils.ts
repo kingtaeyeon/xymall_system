@@ -56,7 +56,7 @@ export default {
         // 1、判断用户是否登录
         const storeState = store.getState().user.isLogin;
 
-        // 2、如果登录了，就返回teue，页面就会去响应这个值，去获取用户信息
+        // 2、如果登录了，就返回true，页面就会去响应这个值，去获取用户信息
         if( storeState ) return true;
 
         // 3、如果没有登录，就去验证本地的token信息，如果有token，就说明已经登录了，但是状态还是为改变

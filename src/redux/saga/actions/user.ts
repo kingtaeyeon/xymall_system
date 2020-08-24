@@ -4,7 +4,7 @@
  * @since 2020-08-05 12:05
  **/
 import { createRoutine, promisifyRoutine} from "redux-saga-routines";
-import extendRoutine from "../extendsRoutines";
+import extendRoutine from "../extendRoutine";
 import NAME_SPACE from "../../../constants/name-space";
 
 export const loginAction = extendRoutine(

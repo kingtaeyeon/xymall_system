@@ -7,6 +7,5 @@ interface IState {
     common: {
         retryTip: boolean;
     };
-    user: IUser;
-    menu: IMenu;
+    user: IUser
 }

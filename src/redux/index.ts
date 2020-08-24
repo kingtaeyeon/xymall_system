@@ -40,8 +40,8 @@ const store = createStore(
             routerMiddleware(history),
             sagaMiddleware,
             thunk,
-            logger
-        ),
+            //logger
+        )
     ));
 
 sagaMiddleware.run(rootSaga);

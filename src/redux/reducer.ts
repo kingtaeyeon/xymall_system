@@ -12,11 +12,13 @@ import {connectRouter} from "connected-react-router";
 
 // combineReducers接受一个对象，对象里面是一个一个的reducer
 // const obj = {a: 1, b: 2}
-const rootReducer = (history: History) => combineReducers({
-    router: connectRouter(history),
-    ...sagaReducer,
-    ...thunkReducer
-});
+const rootReducer = (history: History) => (
+    combineReducers({
+        router: connectRouter(history),
+        ...sagaReducer,
+        ...thunkReducer
+    })
+);
 
 export default rootReducer;
 

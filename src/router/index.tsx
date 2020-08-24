@@ -3,18 +3,16 @@
  * @since 2020-08-19 22:38
  **/
 import React from 'react';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import MallLayout from "../layout";
-import Login from "../pages/login";
+import { BrowserRouter} from "react-router-dom";
+import { renderRoutes } from "react-router-config";
+import config from "./config";
 
-export default function () {
+const routes =  (
+    <BrowserRouter>
+        {
+            renderRoutes( config )
+        }
+    </BrowserRouter>
+);
 
-    return (
-        <BrowserRouter>
-            <Switch>
-                <Route exact path="/"  component={ MallLayout } />
-                <Route path="/login"  component={ Login } />
-            </Switch>
-        </BrowserRouter>
-    )
-}
+export default routes;

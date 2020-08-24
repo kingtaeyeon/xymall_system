@@ -1,5 +1,5 @@
 import React from 'react';
-import Router from './router';
+import routes from './router';
 import { History } from "history";
 import { ConnectedRouter } from "connected-react-router";
 
@@ -9,12 +9,13 @@ interface IApp {
 
 function App({ history }: IApp) {
 
-    console.log("history", history);
-
     return (
         <ConnectedRouter history={ history }>
-            <Router />
+            {
+                routes
+            }
         </ConnectedRouter>
+
     );
 }
 

@@ -7,7 +7,7 @@ import { loginAction } from '../../actions/user';
 
 const initialStateSetter: IUser = {
     isLogin: false,
-    loading: false,
+    loading: false
 };
 
 export default function (state = initialStateSetter, action: ActionParams) {

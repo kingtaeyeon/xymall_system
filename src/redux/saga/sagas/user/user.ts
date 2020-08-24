@@ -8,13 +8,14 @@ import {
 } from 'redux-saga/effects';
 import { loginAction } from '../../actions/user';
 import { login } from "../../../../http/user";
+import loginUtils from "../../../../utils/loginUtils";
 
 function* authorize (action: ActionParams<ILogin>) {
     // 一进来过后， 就去调用后端的登录接口
     try {
         // call 表示用同步的方式 做异步的事情
         const res = yield call(login, action.payload);
-       // const token = res.payload;
+        const token = res.payload;
         //const token = 'abs.abs.abs';
         // call 效果上表示同步的事情
         // 一般登录成功过后会获取一个token身份标识 需要再本地存储进行存储，
@@ -25,17 +26,17 @@ function* authorize (action: ActionParams<ILogin>) {
         // .eyJfaWQiOiI1ZWUzYjBmMTA1NjkzMjA2NjRhYjE5MzciLCJpYXQiOjE1OTI2Mzc2NTgsImV4cCI6MTU5MjcyNDA1OH0
         // .09ezVz1_-ryNTBz68wWkQ00qX_RdiFqhlDqYRzpZWkQ"
 
-        //yield call(loginUtils.saveLoginState, token)
+        yield call(loginUtils.saveLoginState, token);
         // 如果需要延迟
         yield delay(1000);
-        // yield put(loginAction.success(token));
+        yield put(loginAction.success(token));
 
     } catch( error ) {
         // 错误的处理
         yield put(loginAction.failure(error));
     }
 
-    yield put(loginAction.fulfill());
+     yield put(loginAction.fulfill());
 }
 
 // 异步请求进来过后， 首先会进入的是 effect副作用处理，
