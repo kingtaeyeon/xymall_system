@@ -24,13 +24,14 @@ interface IProps extends RouteConfigComponentProps{
 
 const MallLayout: React.FC<IProps> = (props)  => {
 
-    const { route } = props;
+    const { route,  } = props;
     const [ collapsed, setCollapsed ] = useState(false);
     const actions = useActions({
        setMenu: menuAction.setMenu
     });
 
     useEffect(() => {
+
         if ( route ) {
             actions.setMenu({
                 routes: route.routes

@@ -3,8 +3,9 @@
  * @author: LiHao
  * @since  2020-08-21 16:49
  **/
-import React, {memo} from 'react';
-import { Menu } from "antd";
+import React, {memo, useCallback} from 'react';
+import { useSelector } from "react-redux";
+import { Menu, message } from "antd";
 
 interface IProps {
 
@@ -12,16 +13,40 @@ interface IProps {
 
 const { Item } = Menu;
 const TopMenu: React.FC<IProps> = (props) => {
+
+    const { topMenu } = useSelector((state: IState) => state.menu);
+
+   const handleGoPathClick = useCallback(() => {
+        message.success("大哥，你点到我了~");
+   }, []);
+
+   // 侧边栏的数据结构
+   // const sidebarMenu = {
+   //     '/dashborad': [],
+   //     '/product': [],
+   //     '/discountMarket': [],
+   //     '/stock': [],
+   //     '/system': []
+   // };
+
     return (
         <div className="top-menu">
             <Menu
                 mode="horizontal"
+                onClick={handleGoPathClick}
             >
-                <Item>工作台</Item>
-                <Item>商品管理</Item>
-                <Item>优惠营销</Item>
-                <Item>库存系统</Item>
-                <Item>系统管理</Item>
+                {
+                    topMenu.map((item) => (
+                        <Item
+                            key={item.path}
+                            icon={item.icon}
+                        >
+                            {
+                                item.name
+                            }
+                        </Item>
+                    ))
+                }
             </Menu>
         </div>
     );
