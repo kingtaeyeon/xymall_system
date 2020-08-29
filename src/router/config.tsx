@@ -1,9 +1,22 @@
-import  RouterWithSubRouters  from './routerWithSubRouters';
+import React from "react";
+import RouterWithSubRouters  from './routerWithSubRouters';
 import Auth from "./Auth";
 import Login from "../pages/login";
 import Dashboard from "../pages/dashborad";
 import MallLayout from "../layout";
-
+import {
+    ShopOutlined,
+    DashboardOutlined,
+    GiftOutlined,
+    ContainerOutlined,
+    MenuUnfoldOutlined,
+    MenuFoldOutlined,
+    SettingOutlined,
+} from '@ant-design/icons';
+import product from "./config/product";
+import discountMarket from "./config/discountMarket";
+import stock from "./config/stock";
+import system from "./config/system";
 
 export default [
     {
@@ -24,7 +37,7 @@ export default [
                         // 1级路由
                         component: Dashboard,
                         name: '工作台',
-                        icon: '',
+                        icon: <DashboardOutlined />,
                         path: '/dashboard',
                     },
                     // 还有404的页面
@@ -33,232 +46,36 @@ export default [
                         // 1级路由
                         component: RouterWithSubRouters,
                         name: '商品系统',
-                        icon: '',
+                        icon: <ShopOutlined />,
                         path: '/product',
-                        routes: [
-                            {
-                                // 2级路由
-                                component: RouterWithSubRouters,
-                                name: '分类维护',
-                                icon: '',
-                                path: '/classifyMaintain',
-                                routes: [
-                                    {
-                                        // 3级路由
-                                        component: RouterWithSubRouters,
-                                        name: '分类维护列表',
-                                        icon: '',
-                                        path: '/list',
-                                        routes: [
-                                            {
-                                                component: RouterWithSubRouters,
-                                                name: '新建分类',
-                                                icon: '',
-                                                path: '/create',
-                                            }
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                // 2级路由
-                                component: RouterWithSubRouters,
-                                name: '品牌管理',
-                                icon: '',
-                                path: '/brand',
-                                routes: [
-                                    {
-                                        // 3级路由
-                                        component: RouterWithSubRouters,
-                                        name: '品牌管理列表',
-                                        icon: 'icon组件',
-                                        path: '/list',
-                                        routes: [
-                                            {
-                                                component: RouterWithSubRouters,
-                                                name: '新建品牌',
-                                                icon: '',
-                                                path: '/create',
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
+                        routes: product
                     },
                     {
 
                         // 1级路由
                         component: RouterWithSubRouters,
                         name: '优惠营销',
-                        icon: '',
+                        icon: <GiftOutlined />,
                         path: '/discountMarket',
-                        routes: [
-                            {
-                                // 2级路由
-                                component: RouterWithSubRouters,
-                                name: '分类维护',
-                                icon: '',
-                                path: '/classifyMaintain',
-                                routes: [
-                                    {
-                                        // 3级路由
-                                        component: RouterWithSubRouters,
-                                        name: '分类维护列表',
-                                        icon: '',
-                                        path: '/list',
-                                        routes: [
-                                            {
-                                                component: RouterWithSubRouters,
-                                                name: '新建分类',
-                                                icon: '',
-                                                path: '/create',
-                                            }
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                // 2级路由
-                                component: RouterWithSubRouters,
-                                name: '品牌管理',
-                                icon: '',
-                                path: '/brand',
-                                routes: [
-                                    {
-                                        // 3级路由
-                                        component: RouterWithSubRouters,
-                                        name: '品牌管理列表',
-                                        icon: 'icon组件',
-                                        path: '/list',
-                                        routes: [
-                                            {
-                                                component: RouterWithSubRouters,
-                                                name: '新建品牌',
-                                                icon: '',
-                                                path: '/create',
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
+                        routes: discountMarket
                     },
                     {
 
                         // 1级路由
                         component: RouterWithSubRouters,
                         name: '库存系统',
-                        icon: '',
+                        icon: <ContainerOutlined />,
                         path: '/stock',
-                        routes: [
-                            {
-                                // 2级路由
-                                component: RouterWithSubRouters,
-                                name: '分类维护',
-                                icon: '',
-                                path: '/classifyMaintain',
-                                routes: [
-                                    {
-                                        // 3级路由
-                                        component: RouterWithSubRouters,
-                                        name: '分类维护列表',
-                                        icon: '',
-                                        path: '/list',
-                                        routes: [
-                                            {
-                                                component: RouterWithSubRouters,
-                                                name: '新建分类',
-                                                icon: '',
-                                                path: '/create',
-                                            }
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                // 2级路由
-                                component: RouterWithSubRouters,
-                                name: '品牌管理',
-                                icon: '',
-                                path: '/brand',
-                                routes: [
-                                    {
-                                        // 3级路由
-                                        component: RouterWithSubRouters,
-                                        name: '品牌管理列表',
-                                        icon: 'icon组件',
-                                        path: '/list',
-                                        routes: [
-                                            {
-                                                component: RouterWithSubRouters,
-                                                name: '新建品牌',
-                                                icon: '',
-                                                path: '/create',
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
+                        routes: stock
                     },
                     {
 
                         // 1级路由
                         component: RouterWithSubRouters,
                         name: '系统管理',
-                        icon: '',
+                        icon: <SettingOutlined />,
                         path: '/system',
-                        routes: [
-                            {
-                                // 2级路由
-                                component: RouterWithSubRouters,
-                                name: '分类维护',
-                                icon: '',
-                                path: '/classifyMaintain',
-                                routes: [
-                                    {
-                                        // 3级路由
-                                        component: RouterWithSubRouters,
-                                        name: '分类维护列表',
-                                        icon: '',
-                                        path: '/list',
-                                        routes: [
-                                            {
-                                                component: RouterWithSubRouters,
-                                                name: '新建分类',
-                                                icon: '',
-                                                path: '/create',
-                                            }
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                // 2级路由
-                                component: RouterWithSubRouters,
-                                name: '品牌管理',
-                                icon: '',
-                                path: '/brand',
-                                routes: [
-                                    {
-                                        // 3级路由
-                                        component: RouterWithSubRouters,
-                                        name: '品牌管理列表',
-                                        icon: 'icon组件',
-                                        path: '/list',
-                                        routes: [
-                                            {
-                                                component: RouterWithSubRouters,
-                                                name: '新建品牌',
-                                                icon: '',
-                                                path: '/create',
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
+                        routes: system
                     }
 
                 ]

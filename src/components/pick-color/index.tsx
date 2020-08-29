@@ -17,10 +17,11 @@ import { Popover } from "antd";
 import './index.less';
 
 interface IProps {
-    onChangeComplete: (color: string) => void,
-    type?: string,
-    position?: string,
-    themColor?: string
+    onChangeComplete: (color: string) => void;
+    type?: string;
+    position?: string;
+    themColor?: string;
+    small?: boolean;
 }
 
 const pickers: {
@@ -106,6 +107,8 @@ const PickColor: React.FC<IProps> = (props) => {
                         style={styles.wrapper}
                     >
                         <Picker
+                            { ...props }
+                            color={color}
                             onchange={handleChange}
                             onChangeComplete={handleChangeComplete}
                         />

@@ -33,4 +33,4 @@ export const menuAction = extendRoutine(
       action: 'setDrawer',
     },
   ]
-)
+);

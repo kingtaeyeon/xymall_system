@@ -29,7 +29,6 @@ const Auth: React.FC<IProps> = (props) => {
     const { retryTip } = useSelector((state: IState) => state.common);
     const { route, location } = props;
     const isLogin = loginUtils.getUserState();
-    console.log("retryTip", retryTip);
 
     /**
      * 如果有些项目是需要登录过后，在路由鉴权这里去请求用户信息的，那么

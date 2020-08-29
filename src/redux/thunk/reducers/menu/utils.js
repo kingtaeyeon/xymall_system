@@ -13,36 +13,70 @@ const breadcrumb = {};
  **/
 export const createMenu = (rootPath, routes, permission) => {
 
+    const menu = [];
+
     routes.forEach(subMenu => {
-       if( subMenu.routes ) {
-           subMenu.routes.forEach(under => {
+        const underMenu = [];
+        if (subMenu.routes) {
+            subMenu.routes.forEach(under => {
 
-               const basePath = rootPath + subMenu.path;
-               // if( permission ) { // 处理权限 }
-               if( under.path ) {
-                   breadcrumb[basePath + under.path] = {
-                       icon: under.icon,
-                       name: under.name
-                   }
-               }
-               if( under.routes ) {
-                   under.routes.forEach(lastRoute => {
-                      if( lastRoute.path ) {
-                          breadcrumb[basePath + under.path + lastRoute.path] = {
-                              icon: under.icon,
-                              name: under.name
-                          }
-                      }
-                   });
-               }
+                const basePath = rootPath + subMenu.path;
+                // if( permission ) { // 处理权限 }
+                if ( under.path ) {
+                    breadcrumb[basePath + under.path] = {
+                        icon: under.icon,
+                        name: under.name
+                    };
 
-           });
-       }
+                    // 处理underMenu
+                    underMenu.push({
+                        icon: under.icon,
+                        name: under.name,
+                        path: basePath + under.path
+                    });
+                }
+                if (under.routes) {
+                    under.routes.forEach(lastRoute => {
+                        if ( lastRoute.path ) {
+                            breadcrumb[basePath + under.path + lastRoute.path] = {
+                                icon: lastRoute.icon,
+                                name: lastRoute.name
+                            }
+                        }
+                    });
+                }
+
+                // 还要在这里处理面包屑
+                breadcrumb[`${rootPath}${subMenu.path}`] = {
+                    name: subMenu.name,
+                    icon: subMenu.icon
+                }
+            });
+
+            if (underMenu.length !== 0) {
+                menu.push({
+                    icon: subMenu.icon,
+                    name: subMenu.name,
+                    path: `${rootPath}${subMenu.path}`,
+                    routes: underMenu
+                })
+            }
+        } else {
+            menu.push({
+                name: subMenu.name,
+                icon: subMenu.icon,
+                path: `${rootPath}${subMenu.path}`
+            });
+
+            // 还要在这里处理面包屑
+            breadcrumb[`${rootPath}${subMenu.path}`] = {
+                name: subMenu.name,
+                icon: subMenu.icon
+            }
+        }
     });
 
-    return {
-
-    }
+    return menu;
 };
 
 
@@ -55,33 +89,30 @@ export const createMenu = (rootPath, routes, permission) => {
 export const recursiveMenu = (routers, permissions = []) => {
 
     const topMenu = [];
-    const setMenu = {};
+    const sideMenu = {};
 
     routers.forEach(route => {
         const path = route.path;
         topMenu.push({
             name: route.name,
-            path: route.path,
+            path: route.path || '',
             icon: route.icon
         });
         if( route.routes ) {
             // 说明应该处理 breadcrumb
-            createMenu(path, route.routes);
-
-            setMenu[path] = route;
+            sideMenu[path] = createMenu(path, route.routes);
 
             breadcrumb[path] = {
                 name: route.name,
                 icon: route.icon
             };
-            console.log(breadcrumb);
-            console.log(setMenu);
         }
     });
 
     return {
         topMenu,
-        breadcrumb
+        breadcrumb,
+        sideMenu
     }
 
 };

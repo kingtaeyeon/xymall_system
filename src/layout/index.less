@@ -1,8 +1,11 @@
-/**
- * @author； LiHao
- * @since: 2020-08-21 15:45
- */
-
+/***
+* @auth: LiHao
+* @time: 2020-08-23 23:27
+* @func:
+* @params:
+* @return:
+* @updateTime:
+***/
 .layout {
   height: 100%;
 
@@ -24,7 +27,7 @@
     &-top {
       display: flex;
       height: 48px;
-      box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+      box-shadow: 0 1px 4px rgba(0,21,41,.08);
 
       .trigger {
         flex-shrink: 0;
@@ -43,7 +46,8 @@
       .navigate {
         flex-shrink: 1;
         flex-grow: 1;
-
+        padding-left: 15px;
+        overflow: hidden;
       }
 
       .right {
@@ -60,4 +64,67 @@
     }
 
   }
+
+  .sidebar {
+
+    background: @primary-color!important;
+    overflow: hidden;
+    .logo {
+      padding: 8px 0 0 24px;
+      width: 200px;
+      height: 48px;
+      background: @primary-color;
+
+      &-icon {
+        display: inline-block;
+        margin-right: 4px;
+        font-size: 32px;
+        color: #ffffff;
+      }
+
+      &-title {
+        position: relative;
+        top: -4px;
+        left: 20px;
+        font-size: 22px;
+        color: #ffffff;
+      }
+    }
+
+    .ant-menu {
+      background: @primary-color!important;
+
+      .ant-menu-item:after {
+        border-right: none;
+      }
+    }
+    .ant-menu-inline {
+      border-right: none;
+    }
+  }
+
+  &-content {
+    margin: 15px;
+    padding: 15px;
+    background: #fff;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+
+    &-icon {
+      margin-right: 4px;
+    }
+  }
+
+  .ant-layout-header {
+    background: #fff;
+  }
+
+}
+
+.ant-drawer-header-no-title {
+  margin-bottom: 20px;
 }

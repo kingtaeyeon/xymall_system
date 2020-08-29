@@ -15,7 +15,6 @@ export default (state = initialStateSetter, action: ActionParams ) => {
     switch (action.type) {
 
         case menuAction.SET_MENU: {
-            console.log('menuReducer的打印', action.payload);
             return {
                 ...state
             }
