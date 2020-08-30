@@ -11,7 +11,6 @@ const initialStateSetter = {
 
 export default (state = initialStateSetter, action: ActionParams ) => {
 
-    console.log("进来了");
     switch (action.type) {
 
         case menuAction.SET_MENU: {

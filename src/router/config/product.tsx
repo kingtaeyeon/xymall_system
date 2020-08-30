@@ -13,6 +13,7 @@ import {
     RedEnvelopeOutlined,
     PullRequestOutlined
 } from '@ant-design/icons';
+import loadings from "../loadings";
 
 const product: any[] = [
     {

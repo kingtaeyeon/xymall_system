@@ -6,6 +6,7 @@ import { menuAction } from "../../../saga/actions/menu";
 import { recursiveMenu } from "./utils";
 import LocalStore from "../../../../utils/LocalStore";
 import {IMenu} from "./menu";
+import {type} from "os";
 
 const initialStateSetter: IMenu = {
     breadcrumb: {},
@@ -16,12 +17,15 @@ const initialStateSetter: IMenu = {
 
     theme: LocalStore.get('theme') || 'dark',
     drawer: false,
-    primary: LocalStore.get('primary') || '#d214a2'
+    primaryColor: LocalStore.get('primary-color') || '#d214a2'
 };
 
 export default function (state = initialStateSetter, action: ActionParams) {
 
     switch (action.type) {
+
+
+
         case menuAction.SET_MENU: {
 
             const { routes } = action.payload;
@@ -55,6 +59,18 @@ export default function (state = initialStateSetter, action: ActionParams) {
             return {
                 ...state,
                 ...action.payload
+            };
+        }
+
+        case menuAction.SET_PRIMARY_COLOR: {
+
+
+            // 存入 本地存储
+            LocalStore.set('primary-color', action.payload);
+
+            return {
+                ...state,
+                primaryColor: action.payload,
             };
         }
 

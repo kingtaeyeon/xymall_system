@@ -14,7 +14,7 @@ interface IMenu {
     currentSidebar: ISidebar;
     currentTopMenu: string | null;
     theme: string;
-    primary: string;
+    primaryColor: string;
     drawer: boolean;
 }
 

@@ -1,5 +1,7 @@
 import React from "react";
+import Loadable from 'react-loadable';
 import RouterWithSubRouters  from './routerWithSubRouters';
+import loadings from "./loadings";
 import Auth from "./Auth";
 import Login from "../pages/login";
 import Dashboard from "../pages/dashborad";
@@ -9,10 +11,9 @@ import {
     DashboardOutlined,
     GiftOutlined,
     ContainerOutlined,
-    MenuUnfoldOutlined,
-    MenuFoldOutlined,
     SettingOutlined,
 } from '@ant-design/icons';
+import PageLoading from "../components/page-loading/PageLoading";
 import product from "./config/product";
 import discountMarket from "./config/discountMarket";
 import stock from "./config/stock";
@@ -26,8 +27,27 @@ export default [
         routes: [
             {
                 // 1级路由
-                component: Login,
+                component: Loadable({
+                    loader: () => import('../pages/login'),
+                    ...loadings
+                }),
                 path: '/login',
+            },
+            {
+                // 404
+                path: '/404',
+                component: Loadable({
+                    loader: () => import('../components/not-found/NotFound'),
+                    ...loadings
+                })
+            },
+            {
+                // 403 暂无权限
+                path: '/403',
+                component: Loadable({
+                    loader: () => import('../components/not-found/NotFound'),
+                    ...loadings
+                })
             },
             {
                 component: MallLayout,

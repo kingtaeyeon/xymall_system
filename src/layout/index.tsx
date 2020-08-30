@@ -28,7 +28,7 @@ interface IProps extends RouteConfigComponentProps {
 const MallLayout: React.FC<IProps> = (props) => {
 
     const {route, history, location} = props;
-    const {topMenu, currentSidebar, theme, drawer, primary} = useSelector((state: IState) => state.menu);
+    const {topMenu, currentSidebar, theme, drawer, primaryColor } = useSelector((state: IState) => state.menu);
     const [collapsed, setCollapsed] = useState(false);
     const actions = useActions({
         setMenu: menuAction.setMenu,
@@ -37,10 +37,8 @@ const MallLayout: React.FC<IProps> = (props) => {
     });
 
     const handleSettingClick = useCallback((values)  => {
-        console.log(values);
         actions.setTheme(values);
     }, [actions]);
-
 
     useEffect(() => {
 
@@ -49,10 +47,9 @@ const MallLayout: React.FC<IProps> = (props) => {
                 routes: route.routes
             });
         }
-        console.log('11', renderRoutes(route?.routes));
     }, [actions, route]);
 
-    if (topMenu.length === 0) return <Spin/>;
+    if (topMenu.length === 0) return <Spin className="spin-center"/>;
 
     const handleDrawerClose = () => {
         actions.setDrawer(false);
@@ -76,7 +73,12 @@ const MallLayout: React.FC<IProps> = (props) => {
                         {
                             currentSidebar.length !== 0
                             &&
-                            <div className="trigger">
+                            <div
+                                className="trigger"
+                                style={{
+                                    color: primaryColor
+                                }}
+                            >
                                 {
                                     React.createElement(
                                         collapsed ?

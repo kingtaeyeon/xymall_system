@@ -11,6 +11,7 @@ import {Menu} from "antd";
 import {menuAction} from "../../../redux/saga/actions/menu";
 import {MenuProps} from "antd/lib/menu";
 import {IRouteProps} from "../../layout";
+import {IMenuItem} from "../../../redux/thunk/reducers/menu/menu";
 
 interface IProps extends IRouteProps{
 }
@@ -40,7 +41,7 @@ const TopMenu: React.FC<IProps> = (props) => {
             || pathname.split('/')[1] !== currentTopMenu.split('/')[1]
         ) {
             // 去寻找选中的哪一项
-            let selectedMenu = topMenu.find((menu) => {
+            let selectedMenu = topMenu.find((menu: { path: any; }) => {
                 const matchedRoute = matchPath(
                     pathname,
                     {
@@ -96,7 +97,7 @@ const TopMenu: React.FC<IProps> = (props) => {
                 onClick={handleGoPathClick}
             >
                 {
-                    topMenu.map((item) => (
+                    topMenu.map((item: IMenuItem) => (
                         <Item
                             key={item.path}
                             icon={item.icon}

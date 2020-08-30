@@ -3,7 +3,7 @@
  * @author: LiHao
  * @since 2020/8/23 23:06
  **/
-import React, {memo, useCallback, useEffect, useState} from 'react';
+import React, {memo, useCallback, useEffect, useState, useMemo } from 'react';
 
 
 import {useSelector} from "react-redux";
@@ -12,8 +12,10 @@ import {Layout, Menu} from "antd";
 import {
     CodepenOutlined
 } from '@ant-design/icons';
+import classNames from "classnames";
 import {IRouteProps} from "../layout";
 import {IMenuItem, ISidebarItem} from "../../redux/thunk/reducers/menu/menu";
+
 
 interface IProps extends IRouteProps{
     collapsed: boolean
@@ -25,7 +27,7 @@ const { Item, SubMenu } = Menu;
 const LeftTopSidebar: React.FC<IProps> = (props) => {
 
     const { collapsed, history, location: {pathname} } = props;
-    const { currentSidebar, currentTopMenu, theme } = useSelector((state: IState) => state.menu);
+    const { currentSidebar, currentTopMenu, theme, primaryColor } = useSelector((state: IState) => state.menu);
 
     //
     const [ keys, setKeys ] = useState<{ currentOpenSubs: string[], currentSideMenu: string }>({
@@ -50,6 +52,8 @@ const LeftTopSidebar: React.FC<IProps> = (props) => {
             currentOpenSubs: openKeys
         })
     }, [keys]);
+
+
 
 
     useEffect(() => {
@@ -136,7 +140,16 @@ const LeftTopSidebar: React.FC<IProps> = (props) => {
         }
     }, [currentSidebar, currentTopMenu, history, keys.currentSideMenu, pathname]);
 
-
+    const style = useMemo(() => ({
+        sidebar: {
+            boxShadow: `1px 0 6px ${primaryColor}`,
+            background: theme === 'light' ? '#fff' : primaryColor,
+        },
+        logoColor: {
+            backgroundColor: theme === 'light' ? '#fff' : primaryColor,
+            color: theme === 'light' ? primaryColor : '#fff',
+        }
+    }), [primaryColor, theme]);
 
     if (currentSidebar.length === 0) return null;
 
@@ -147,11 +160,19 @@ const LeftTopSidebar: React.FC<IProps> = (props) => {
             trigger={null}
             collapsible
             collapsed={collapsed}
+            style={ style.sidebar }
         >
-            <div className="logo">
-                <CodepenOutlined className="logo-icon"/>
+            <div
+                className="logo"
+                style={ style.logoColor }
+            >
+                <CodepenOutlined
+                    style={ style.logoColor }
+                    className="logo-icon"
+                />
                 <span
                     className="logo-title"
+                    style={style.logoColor}
                 >
                     xy-mall
                 </span>
@@ -204,5 +225,7 @@ const LeftTopSidebar: React.FC<IProps> = (props) => {
 };
 
 export default memo(LeftTopSidebar);
+
+
 
 

@@ -121,7 +121,7 @@ const PickColor: React.FC<IProps> = (props) => {
             swatch,
             picker
         }
-    }, [position, handleClick, color, displayColorPicker, onChangeComplete]);
+    }, [position, handleClick, color, displayColorPicker, handleClosePick, props, handleChangeComplete]);
 
     return (
         <div className="pick-color">
